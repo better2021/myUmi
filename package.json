@@ -8,10 +8,10 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "dva": "^2.5.0-beta.2",
     "antd": "^3.15.0",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "dva": "^2.5.0-beta.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",
@@ -26,9 +26,12 @@
     "react-test-renderer": "^16.7.0",
     "umi": "^2.6.3",
     "umi-plugin-react": "^1.6.0"
-    },
+  },
   "lint-staged": {
-    "*.{js,jsx}": ["eslint --fix", "git add"]
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "engines": {
     "node": ">=8.0.0"

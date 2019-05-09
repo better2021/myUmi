@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Skeleton } from 'antd';
-import { Rate } from 'antd';
+import { Skeleton, Rate, Input } from 'antd';
 
 const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
 
