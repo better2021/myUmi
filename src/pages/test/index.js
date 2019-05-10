@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Table, Divider, Tag } from 'antd';
 import router from 'umi/router';
+import Welcome from '@/components/Welcome';
 
 const columns = [
   {
@@ -77,10 +78,14 @@ const data = [
 ];
 
 function NumberList(props) {
+  const style = {
+    display: 'flex',
+    justifyContent: 'center',
+  };
   const numbers = props.numbers;
   const listItems = numbers.map(number => <li key={number.toString()}>{number}</li>);
   //console.log(listItems);
-  return <ul>{listItems}</ul>;
+  return <ul style={{ ...style }}>{listItems}</ul>;
 }
 
 export default class index extends Component {
@@ -95,6 +100,8 @@ export default class index extends Component {
         <Table columns={columns} dataSource={data} />
         <button onClick={this.jumpUrl.bind(this)}>页面跳转</button>
         <NumberList numbers={numbers} />
+        <Welcome color="pink" isShow={true} />
+        <Welcome color="blue" isShow={false} />
       </div>
     );
   }

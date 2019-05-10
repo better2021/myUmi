@@ -1,7 +1,9 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import { Input } from 'antd';
 
-export default class index extends Component {
+// import {useState, useEffect } from 'react
+
+export default class SetTime extends Component {
   constructor(props) {
     super();
     this.state = {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Skeleton, Rate, Input } from 'antd';
+import { Skeleton, Rate } from 'antd';
 
 const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
 
@@ -80,6 +80,11 @@ export default class index extends Component {
         {this.tick()}
         {/* handleClickqq就是props传给子组件的key值 */}
         <ActionLink handleClickqq={this.handleClickle} />
+        {/* React.Fragment 相当于vue中的template*/}
+        <React.Fragment>
+          <p>hello</p>
+          <p>react</p>
+        </React.Fragment>
       </div>
     );
   }
