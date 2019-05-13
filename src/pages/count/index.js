@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Input } from 'antd';
 
 // import {useState, useEffect } from 'react
 
-export default class SetTime extends Component {
+import Example from '../hook';
+export default class SetTime extends PureComponent {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       count: 10,
       delay: 1000,
@@ -52,6 +53,7 @@ export default class SetTime extends Component {
       <div>
         <Input placeholder="Basic usage" style={{ width: '300px' }} onChange={this.onChange} />
         <p>{this.state.count}</p>
+        <Example />
       </div>
     );
   }
