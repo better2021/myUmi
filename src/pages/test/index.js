@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Divider, Tag } from 'antd';
+import { Table, Divider, Tag, Button } from 'antd';
 import router from 'umi/router';
 import Welcome from '@/components/Welcome';
 
@@ -98,7 +98,9 @@ export default class index extends Component {
     return (
       <div>
         <Table columns={columns} dataSource={data} />
-        <button onClick={this.jumpUrl.bind(this)}>页面跳转</button>
+        <Button type="primary" onClick={this.jumpUrl.bind(this)}>
+          页面跳转
+        </Button>
         <NumberList numbers={numbers} />
         <Welcome color="pink" isShow={true} />
         <Welcome color="blue" isShow={false} />

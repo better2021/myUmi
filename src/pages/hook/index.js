@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-
+import UserInfo from '@/components/UserInfo';
+import { Button } from 'antd';
 function Example() {
   // 声明一个新的状态变量，我们将其称为'count'
   const [count, setCount] = useState(0); // useState(0) 表示state的默认初始值为0
@@ -29,9 +30,12 @@ function Example() {
       <p>
         you clicked {count} times {fruit}
       </p>
-      <button onClick={() => setCount(count + 1)}>click me</button>
+      <Button type="primary" onClick={() => setCount(count + 1)}>
+        click me
+      </Button>
       <br />
-      <button onClick={() => setFruit('哈哈哈哈')}>点击</button>
+      <Button onClick={() => setFruit('哈哈哈哈')}>点击</Button>
+      <UserInfo title="个人信息" />
     </div>
   );
 }

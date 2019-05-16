@@ -3,7 +3,6 @@ import { Input } from 'antd';
 
 // import {useState, useEffect } from 'react
 
-import Example from '../hook';
 export default class SetTime extends PureComponent {
   constructor(props) {
     super(props);
@@ -53,7 +52,6 @@ export default class SetTime extends PureComponent {
       <div>
         <Input placeholder="Basic usage" style={{ width: '300px' }} onChange={this.onChange} />
         <p>{this.state.count}</p>
-        <Example />
       </div>
     );
   }
