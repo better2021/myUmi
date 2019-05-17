@@ -88,6 +88,7 @@ axios.interceptors.response.use(
     }
   },
 );
+
 /**
  * get方法，对应get请求
  * @param {String} url [请求的url地址]
@@ -107,6 +108,7 @@ export function get(url, params) {
       });
   });
 }
+
 /**
  * post方法，对应post请求
  * @param {String} url [请求的url地址]

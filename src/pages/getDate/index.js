@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import axios from '@/libs/axios';
-import { Table, Skeleton } from 'antd';
+import { Table, Skeleton, Button } from 'antd';
 export default class GetData extends Component {
   constructor(props) {
     super(props);
     this.state = {
       dataSource: [],
+      list: [{ name: '飞鱼', val: 'feiyuWeb' }, { name: '蝉时雨', val: 'chanshiyucx' }],
     };
   }
 
-  getData() {
+  getData(val = 'feiyuWeb') {
     axios({
-      url: '/users/feiyuWeb/repos',
+      url: `/users/${val}/repos`,
       method: 'GET',
     })
       .then(res => {
@@ -31,6 +32,11 @@ export default class GetData extends Component {
       .catch(err => {
         console.log(err);
       });
+  }
+
+  handleSwitch(item, e) {
+    console.log(item);
+    this.getData(item.val);
   }
 
   componentDidMount() {
@@ -80,9 +86,25 @@ export default class GetData extends Component {
       },
     ];
 
-    const { dataSource } = this.state;
+    const { dataSource, list } = this.state;
     return (
       <div style={{ padding: '20px' }}>
+        <div>
+          {list.map(item => {
+            return (
+              <Button
+                type="primary"
+                key={item.name}
+                style={{ margin: '10px 5px' }}
+                onClick={e => {
+                  this.handleSwitch(item, e);
+                }}
+              >
+                {item.name}
+              </Button>
+            );
+          })}
+        </div>
         {dataSource.length === 0 ? (
           <Skeleton active />
         ) : (

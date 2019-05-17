@@ -11,6 +11,11 @@ export default function() {
       </p>
       <ul className={styles.list}>
         <li>
+          <Tag color="blue">
+            <Link to="/blog">blog</Link>
+          </Tag>
+        </li>
+        <li>
           <Tag color="red">
             <Link to="/about">about</Link>
           </Tag>
