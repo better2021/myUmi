@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Table, Spin, Button, BackTop, Icon } from 'antd';
 import { get } from '@/libs/axios';
+import CodeBlock from './CodeBlock';
 import styles from './index.scss';
 export default class Blog extends Component {
   state = {
@@ -78,7 +79,11 @@ export default class Blog extends Component {
       <div className={styles.box}>
         {data.length === 0 ? <Spin size="large" /> : <Table columns={columns} dataSource={data} />}
 
-        <ReactMarkdown source={markDownData} className={styles.markdown} />
+        <ReactMarkdown
+          source={markDownData}
+          className={styles.markdown}
+          renderers={{ code: CodeBlock }}
+        />
         <BackTop>
           <Icon type="rocket" style={{ fontSize: '45px', color: '#ea8b98' }} />
         </BackTop>
