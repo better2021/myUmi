@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { Table, Spin } from 'antd';
+import { Table, Spin, Button, BackTop, Icon } from 'antd';
 import { get } from '@/libs/axios';
 import styles from './index.scss';
 export default class Blog extends Component {
@@ -19,6 +19,14 @@ export default class Blog extends Component {
       markDownData: res[0].body,
     });
     //console.log(res);
+  }
+
+  // 查看
+  handleClick(item) {
+    //console.log(item.body);
+    this.setState({
+      markDownData: item.body,
+    });
   }
 
   componentDidMount() {
@@ -54,6 +62,16 @@ export default class Blog extends Component {
           );
         },
       },
+      {
+        title: '操作',
+        render: (text, record) => {
+          return (
+            <Button type="primary" onClick={this.handleClick.bind(this, record)}>
+              查看
+            </Button>
+          );
+        },
+      },
     ];
     const { data, markDownData } = this.state;
     return (
@@ -61,6 +79,9 @@ export default class Blog extends Component {
         {data.length === 0 ? <Spin size="large" /> : <Table columns={columns} dataSource={data} />}
 
         <ReactMarkdown source={markDownData} className={styles.markdown} />
+        <BackTop>
+          <Icon type="rocket" style={{ fontSize: '45px', color: '#ea8b98' }} />
+        </BackTop>
       </div>
     );
   }
