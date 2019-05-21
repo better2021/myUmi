@@ -7,7 +7,7 @@ function UserInfo(props) {
 
   const getInfoData = async () => {
     const res = await axios({
-      url: '/users/feiyuWeb',
+      url: `/users/${props.name}`,
       method: 'GET',
     });
     if (res.status !== 200) {
@@ -19,9 +19,12 @@ function UserInfo(props) {
     setInfo(data);
   };
 
-  useEffect(() => {
-    getInfoData();
-  }, []);
+  useEffect(
+    () => {
+      getInfoData();
+    },
+    [props.name],
+  );
 
   const { Meta } = Card;
   return (
