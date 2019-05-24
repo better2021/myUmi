@@ -3,7 +3,7 @@ import { Input } from 'antd';
 
 // import {useState, useEffect } from 'react
 
-export default class SetTime extends PureComponent {
+class SetTime extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -56,6 +56,8 @@ export default class SetTime extends PureComponent {
     );
   }
 }
+
+export default SetTime;
 
 /**
  * hook 实现以上的输入自定义定时功能的代码更精简

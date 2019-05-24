@@ -1,81 +1,10 @@
 import React, { Component } from 'react';
-import { Table, Divider, Tag, Button } from 'antd';
+import { Button } from 'antd';
 import router from 'umi/router';
 import Welcome from '@/components/Welcome';
 
-const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-    render: text => <i>{text}</i>,
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-  },
-  {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
-    render: tags => (
-      <span>
-        {tags.map(tag => {
-          let color = tag.length > 5 ? 'geekblue' : 'green';
-          if (tag === 'loser') {
-            color = 'volcano';
-          }
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </span>
-    ),
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: (text, record) => (
-      <span>
-        <i>Invite {record.name}</i>
-        <Divider type="vertical" />
-        <i>Delete</i>
-      </span>
-    ),
-  },
-];
-
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-];
+import { connect } from 'dva';
+import ProductList from '@/components/ProductList';
 
 function NumberList(props) {
   const style = {
@@ -88,16 +17,37 @@ function NumberList(props) {
   return <ul style={{ ...style }}>{listItems}</ul>;
 }
 
-export default class index extends Component {
+class Test extends Component {
   jumpUrl() {
     router.push({ pathname: '/about' });
   }
 
+  handleDelete = id => {
+    // console.log(id, 'id');
+    const { dispatch } = this.props;
+    /**
+     * dispatch 是一个函数方法，用来将 Action 发送给 State
+     * dispatch 方法从哪里来？被 connect 的 Component 会自动在 props 中拥有 dispatch 方法。
+     */
+    dispatch({
+      type: 'pro/delete', // pro就是自己定义的namespace(命名空间),delete 是自己定义在reducer中的删除方法
+      payload: id, // payload: id 为传给pro/delete的值
+    });
+
+    dispatch({
+      type: 'app/change',
+      payload: `删除的元素id为${id}`,
+    });
+  };
+
   render() {
     const numbers = [1, 3, 5, 8, 9];
+    const { list } = this.props.rootState.pro;
+    const { name } = this.props.rootState.app;
     return (
-      <div>
-        <Table columns={columns} dataSource={data} />
+      <div style={{ padding: '20px' }}>
+        <ProductList onDelete={this.handleDelete} products={list} />
+        <h3 style={{ color: 'pink' }}>{name}</h3>
         <Button type="primary" onClick={this.jumpUrl.bind(this)}>
           页面跳转
         </Button>
@@ -108,3 +58,14 @@ export default class index extends Component {
     );
   }
 }
+
+/**
+ * rootState可以自己随意命名
+ * connect 方法传入的第一个参数是 mapStateToProps 函数，mapStateToProps 函数会返回一个对象，
+ * 用于建立 State 到 Props 的映射关系
+ */
+export default connect(rootState => {
+  return {
+    rootState, // 把state中的数据赋值给connect包含组件(Test)的props
+  };
+})(Test);

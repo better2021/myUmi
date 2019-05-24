@@ -1,19 +1,20 @@
 import NProgress from 'nprogress';
+import { connect } from 'dva';
 import 'nprogress/nprogress.css'; //这个样式必须引入
 import styles from './index.css';
 
-NProgress.configure({ easing: 'ease', speed: 500, showSpinner: false });
+NProgress.configure({ easing: 'ease', speed: 500, showSpinner: true });
 
 let currHref = '';
 
 function BasicLayout(props) {
-  console.log(props, '----');
   const { href } = window.location; // 浏览器地址栏中的地址
   if (currHref !== href) {
     // currHref 和 href 不一致时说明进行了页面跳转
     NProgress.start(); // 页面开始加载时调用start方法
-    if (!props.loading) {
-      // loading 为false时表示页面加载完毕
+    if (!props.loading.global) {
+      // dva中被connet包含的组件会自带全局的loading.global
+      // loading.global 为false时表示页面加载完毕
       NProgress.done(); // 页面加载完成调用done方法
       currHref = href; // 将页面的href值赋值给currHref
     }
@@ -27,4 +28,6 @@ function BasicLayout(props) {
   );
 }
 
-export default BasicLayout;
+export default connect(app => {
+  return app; // 这个app是自己定义的变量，return app 会把app对象上的值全部赋给props
+})(BasicLayout);
