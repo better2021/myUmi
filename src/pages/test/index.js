@@ -43,11 +43,11 @@ class Test extends Component {
   render() {
     const numbers = [1, 3, 5, 8, 9];
     const { list } = this.props.rootState.pro;
-    const { name } = this.props.rootState.app;
+    const { title } = this.props.rootState.app;
     return (
       <div style={{ padding: '20px' }}>
         <ProductList onDelete={this.handleDelete} products={list} />
-        <h3 style={{ color: 'pink' }}>{name}</h3>
+        <h3 style={{ color: 'pink' }}>{title}</h3>
         <Button type="primary" onClick={this.jumpUrl.bind(this)}>
           页面跳转
         </Button>

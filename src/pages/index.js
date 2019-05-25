@@ -40,6 +40,11 @@ export default function() {
             <Link to="/getDate">getDate</Link>
           </Tag>
         </li>
+        <li>
+          <Tag color="pink">
+            <Link to="/user">user</Link>
+          </Tag>
+        </li>
       </ul>
     </div>
   );
