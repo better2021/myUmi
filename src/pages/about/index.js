@@ -3,11 +3,6 @@ import { Skeleton, Rate } from 'antd';
 
 const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
 
-function Welcome(props) {
-  // console.log(props);
-  return <h1>hello,{props.name}</h1>;
-}
-
 function ActionLink(props) {
   function handleClick(e) {
     e.preventDefault();
@@ -71,8 +66,6 @@ export default class index extends Component {
     return (
       <div>
         <Skeleton active />
-        <Welcome name="reactApp" />
-        <Welcome name="feiyu" />
         <span>
           <Rate tooltips={desc} onChange={this.handleChange} value={value} />
           {value ? <span className="ant-rate-text">{desc[value - 1]}</span> : ''}
@@ -80,11 +73,17 @@ export default class index extends Component {
         {this.tick()}
         {/* handleClickqq就是props传给子组件的key值 */}
         <ActionLink handleClickqq={this.handleClickle} />
-        {/* React.Fragment 相当于vue中的template*/}
-        <React.Fragment>
-          <p>hello</p>
-          <p>react</p>
-        </React.Fragment>
+        <div style={{ display: 'flex', height: '150px', justifyContent: 'center' }}>
+          <img src={require('@/assets/atom.svg')} alt="atom" width="100" />
+          <object
+            id="object"
+            data={require('@/assets/atom.svg')}
+            type="image/svg+xml"
+            aria-label="auto"
+            width="100"
+          />
+          <embed id="embed" src={require('@/assets/atom.svg')} type="image/svg+xml" width="100" />
+        </div>
       </div>
     );
   }
