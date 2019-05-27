@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Spin, Card, Input, message } from 'antd';
 import { connect } from 'dva';
 
+// 注意@connect必须放在export default class前面
+@connect(app => app)
 class userDate extends Component {
   constructor(props) {
     super(props);
@@ -61,4 +63,4 @@ class userDate extends Component {
   }
 }
 
-export default connect(({ app }) => ({ app }))(userDate);
+export default userDate;
