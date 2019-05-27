@@ -3,7 +3,7 @@ import { getInfoData } from '@/request/userInfo';
 export default {
   namespace: 'app',
   state: {
-    title: 'test',
+    title: 'feiyuWeb',
     userInfo: {},
   },
   reducers: {
@@ -11,7 +11,8 @@ export default {
       return { name: title };
     },
     userData(state, { payload: res }) {
-      return { userInfo: res };
+      // 接受effects中put传来的res值
+      return { userInfo: res }; // 把res值赋值给state中的userInfo
     },
   },
   effects: {
@@ -19,7 +20,7 @@ export default {
       const res = yield call(getInfoData, payload); // call用来执行异步函数,payload为接受的参数
       yield put({
         type: 'userData',
-        payload: res,
+        payload: res, // 把接口获取的res值传给reducers中的userData
       });
     },
   },

@@ -22,7 +22,6 @@ class userDate extends Component {
   }
 
   componentDidMount() {
-    // console.log(this.props, '----');
     const { dispatch } = this.props;
     dispatch({
       type: 'app/getInfo',
@@ -31,7 +30,7 @@ class userDate extends Component {
   }
 
   render() {
-    const { userInfo, title } = this.props;
+    const { userInfo, title } = this.props.app;
     const { Meta } = Card;
     const Search = Input.Search;
     return (
@@ -62,6 +61,4 @@ class userDate extends Component {
   }
 }
 
-export default connect(rootState => {
-  return rootState.app;
-})(userDate);
+export default connect(({ app }) => ({ app }))(userDate);
