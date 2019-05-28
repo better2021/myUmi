@@ -1,6 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
-import UserInfo from '@/components/UserInfo';
-import { Button, Input } from 'antd';
+import React, { useState, useEffect, useRef, useCallback, Suspense } from 'react';
+import { Button, Input, message } from 'antd';
+//  懒加载组件codeing-split
+const UserInfo = React.lazy(() => import('@/components/UserInfo'));
 
 function Example() {
   // 声明一个新的状态变量，我们将其称为'count'
@@ -28,6 +29,14 @@ function Example() {
     [fruit],
   );
 
+  const hanldleSet = useCallback(value => {
+    if (!value.trim()) {
+      message.error('请输入要搜索的关键词哦');
+      return false;
+    }
+    setName(value);
+  }, []);
+
   const Search = Input.Search;
   return (
     <div>
@@ -48,11 +57,13 @@ function Example() {
       <Search
         placeholder="input search text"
         style={{ width: '200px' }}
-        onSearch={value => setName(value)}
+        onSearch={value => hanldleSet(value)}
         enterButton
         ref={inputFouse}
       />
-      <UserInfo title="个人信息" name={userName} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <UserInfo title="个人信息" name={userName} />
+      </Suspense>
     </div>
   );
 }

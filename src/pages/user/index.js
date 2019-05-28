@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Spin, Card, Input, message } from 'antd';
 import { connect } from 'dva';
 
+const Search = Input.Search;
+const { Meta } = Card;
+
 // 注意@connect必须放在export default class前面
 @connect(app => app)
 class userDate extends Component {
@@ -33,8 +36,7 @@ class userDate extends Component {
 
   render() {
     const { userInfo, title } = this.props.app;
-    const { Meta } = Card;
-    const Search = Input.Search;
+    console.log(this.props.app, '66');
     return (
       <div>
         <p>{title}</p>

@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React, { Suspense, Component } from 'react';
 import { Button } from 'antd';
 import router from 'umi/router';
-import Welcome from '@/components/Welcome';
 
 import { connect } from 'dva';
-import ProductList from '@/components/ProductList';
+
+// lazy load 懒加载组件
+const Welcome = React.lazy(() => import('@/components/Welcome'));
+const ProductList = React.lazy(() => import('@/components/ProductList'));
 
 function NumberList(props) {
   const style = {
@@ -46,14 +48,16 @@ class Test extends Component {
     const { title } = this.props.rootState.app;
     return (
       <div style={{ padding: '20px' }}>
-        <ProductList onDelete={this.handleDelete} products={list} />
-        <h3 style={{ color: 'pink' }}>{title}</h3>
-        <Button type="primary" onClick={this.jumpUrl.bind(this)}>
-          页面跳转
-        </Button>
-        <NumberList numbers={numbers} />
-        <Welcome color="pink" isShow={true} />
-        <Welcome color="blue" isShow={false} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <ProductList onDelete={this.handleDelete} products={list} />
+          <h3 style={{ color: 'pink' }}>{title}</h3>
+          <Button type="primary" onClick={this.jumpUrl.bind(this)}>
+            页面跳转
+          </Button>
+          <NumberList numbers={numbers} />
+          <Welcome color="pink" isShow={true} />
+          <Welcome color="blue" isShow={false} />
+        </Suspense>
       </div>
     );
   }

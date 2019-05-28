@@ -8,11 +8,11 @@ export default {
   },
   reducers: {
     change(state, { payload: title }) {
-      return { name: title };
+      return { ...state, name: title };
     },
     userData(state, { payload: res }) {
       // 接受effects中put传来的res值
-      return { userInfo: res }; // 把res值赋值给state中的userInfo
+      return { ...state, userInfo: res }; // 把res值赋值给state中的userInfo
     },
   },
   effects: {
