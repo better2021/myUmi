@@ -1,4 +1,4 @@
-import React, { Suspense, Component } from 'react';
+import React, { Suspense, PureComponent } from 'react';
 import { Button } from 'antd';
 import router from 'umi/router';
 
@@ -19,7 +19,7 @@ function NumberList(props) {
   return <ul style={{ ...style }}>{listItems}</ul>;
 }
 
-class Test extends Component {
+class Test extends PureComponent {
   jumpUrl() {
     router.push({ pathname: '/about' });
   }
