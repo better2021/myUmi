@@ -45,6 +45,11 @@ export default function() {
             <Link to="/user">user</Link>
           </Tag>
         </li>
+        <li>
+          <Tag color="#2089a5">
+            <Link to="/upImg">upImg</Link>
+          </Tag>
+        </li>
       </ul>
     </div>
   );
