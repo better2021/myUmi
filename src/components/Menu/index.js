@@ -27,6 +27,7 @@ class Sider extends Component {
     const styles = {
       width: '180px',
       height: '100vh',
+      position: 'fixed',
     };
     return (
       <Menu

@@ -25,7 +25,9 @@ function BasicLayout(props) {
 
   return (
     <div className={styles.normal}>
-      <Menu />
+      <div className={styles.leftMenu}>
+        <Menu />
+      </div>
       <div className={styles.mainBox}>{props.children}</div>
     </div>
   );

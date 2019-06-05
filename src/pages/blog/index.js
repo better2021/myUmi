@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { Table, Spin, Button, BackTop, Icon } from 'antd';
-import { get } from '@/libs/axios';
+import { Table, Spin, Button, BackTop, Icon, message } from 'antd';
+import axios from '@/libs/axios';
 import CodeBlock from './CodeBlock';
+import scrollTo from '@/libs/scrollTo';
 import styles from './index.scss';
 export default class Blog extends Component {
   state = {
@@ -11,15 +12,28 @@ export default class Blog extends Component {
   };
 
   async getBlogList() {
-    const res = await get('repos/chanshiyucx/blog/issues');
-    res.forEach(element => {
+    const res = await axios({
+      url: 'repos/chanshiyucx/blog/issues',
+      method: 'get',
+      params: {
+        page: 1,
+        per_page: 100, // 上限是 100
+      },
+    });
+
+    // console.log(res);
+
+    if (res.status !== 200) {
+      message.warning(res.statusText, 2);
+      return;
+    }
+    res.data.forEach(element => {
       element.key = element.id;
     });
     this.setState({
-      data: res,
-      markDownData: res[0].body,
+      data: res.data,
+      markDownData: res.data[0].body,
     });
-    //console.log(res);
   }
 
   // 查看
@@ -27,6 +41,9 @@ export default class Blog extends Component {
     //console.log(item.body);
     this.setState({
       markDownData: item.body,
+    });
+    scrollTo(765, 500, function() {
+      console.log('500毫秒返回指定高度');
     });
   }
 
