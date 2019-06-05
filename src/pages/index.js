@@ -2,6 +2,10 @@ import styles from './index.scss';
 import Link from 'umi/link';
 import { Tag } from 'antd';
 
+/*
+ * 首页
+ */
+
 export default function() {
   return (
     <div className={styles.normal}>

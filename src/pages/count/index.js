@@ -50,8 +50,9 @@ class SetTime extends PureComponent {
   render() {
     return (
       <div>
+        <p>输入数字看看哦</p>
         <Input placeholder="Basic usage" style={{ width: '300px' }} onChange={this.onChange} />
-        <p>{this.state.count}</p>
+        <p style={{ fontSize: '36px', color: 'pink' }}>{this.state.count}</p>
       </div>
     );
   }

@@ -1,8 +1,9 @@
 import NProgress from 'nprogress';
 import { connect } from 'dva';
 import withRouter from 'umi/withRouter';
+import Menu from '@/components/Menu';
 import 'nprogress/nprogress.css'; //这个样式必须引入
-import styles from './index.css';
+import styles from './index.scss';
 
 NProgress.configure({ easing: 'ease', speed: 500, showSpinner: true });
 
@@ -24,8 +25,8 @@ function BasicLayout(props) {
 
   return (
     <div className={styles.normal}>
-      <h1 className={styles.title}>Yay! Welcome to umi!</h1>
-      {props.children}
+      <Menu />
+      <div className={styles.mainBox}>{props.children}</div>
     </div>
   );
 }
