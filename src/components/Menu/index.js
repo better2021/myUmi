@@ -28,6 +28,9 @@ class Sider extends Component {
       width: '180px',
       height: '100vh',
       position: 'fixed',
+      left: 0,
+      top: 0,
+      zIndex: 99,
     };
     return (
       <Menu
@@ -89,6 +92,9 @@ class Sider extends Component {
           </Menu.Item>
           <Menu.Item key="10">
             <Link to="/upImg">upImg</Link>
+          </Menu.Item>
+          <Menu.Item key="11">
+            <Link to="/speak">speak</Link>
           </Menu.Item>
         </SubMenu>
       </Menu>
