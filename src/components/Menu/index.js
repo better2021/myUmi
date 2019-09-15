@@ -58,6 +58,9 @@ class Sider extends Component {
           <Menu.Item key="3">
             <Link to="/test">test</Link>
           </Menu.Item>
+          <Menu.Item key="4">
+            <Link to="/product">product</Link>
+          </Menu.Item>
         </SubMenu>
         <SubMenu
           key="sub2"

@@ -60,6 +60,17 @@ let routes = [
         "_title_default": "myumi"
       },
       {
+        "path": "/",
+        "exact": true,
+        "component": _dvaDynamic({
+  
+  component: () => import(/* webpackChunkName: "p__index" */'../index.js'),
+  
+}),
+        "_title": "myumi",
+        "_title_default": "myumi"
+      },
+      {
         "path": "/blog",
         "exact": true,
         "component": _dvaDynamic({
@@ -76,6 +87,28 @@ let routes = [
         "component": _dvaDynamic({
   
   component: () => import(/* webpackChunkName: "p__count__index" */'../count/index.js'),
+  
+}),
+        "_title": "myumi",
+        "_title_default": "myumi"
+      },
+      {
+        "path": "/product",
+        "exact": true,
+        "component": _dvaDynamic({
+  
+  component: () => import(/* webpackChunkName: "p__product__index" */'../product/index.js'),
+  
+}),
+        "_title": "myumi",
+        "_title_default": "myumi"
+      },
+      {
+        "path": "/product/modal",
+        "exact": true,
+        "component": _dvaDynamic({
+  
+  component: () => import(/* webpackChunkName: "p__product__modal" */'../product/modal.js'),
   
 }),
         "_title": "myumi",
@@ -120,17 +153,6 @@ let routes = [
         "component": _dvaDynamic({
   
   component: () => import(/* webpackChunkName: "p__user__index" */'../user/index.js'),
-  
-}),
-        "_title": "myumi",
-        "_title_default": "myumi"
-      },
-      {
-        "path": "/",
-        "exact": true,
-        "component": _dvaDynamic({
-  
-  component: () => import(/* webpackChunkName: "p__index" */'../index.js'),
   
 }),
         "_title": "myumi",
