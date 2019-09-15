@@ -269,7 +269,7 @@ export default class Product extends Component {
           editObj={editObj}
         />
         <div style={{ margin: '20px 0' }}>
-          <Table dataSource={productList} columns={columns} />;
+          <Table dataSource={productList} columns={columns} />
         </div>
       </div>
     );
