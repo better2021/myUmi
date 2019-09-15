@@ -53,7 +53,7 @@ class ModalBox extends Component {
     return (
       <div>
         <Modal
-          title="新增"
+          title={editObj.id ? '编辑产品' : '新增产品'}
           visible={visible}
           onOk={this.handleOk}
           confirmLoading={confirmLoading}

@@ -54,7 +54,7 @@ export default class Product extends Component {
         message.warning(res.message, 2);
         return;
       }
-      console.log(res, '--');
+      // console.log(res, '--');
       res.data.data.forEach(element => {
         element.key = element.id;
       });
@@ -91,6 +91,23 @@ export default class Product extends Component {
         url: `http://127.0.0.1/api/product/${data.id}`,
         method: 'put',
         data,
+      });
+      if (res.status !== 200) {
+        message.warning(res.message, 2);
+        return;
+      }
+      this.getProductList();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  // 删除接口
+  async deleteProduct(id) {
+    try {
+      const res = await axios({
+        url: `http://127.0.0.1/api/product/${id}`,
+        method: 'delete',
       });
       if (res.status !== 200) {
         message.warning(res.message, 2);
@@ -144,20 +161,37 @@ export default class Product extends Component {
     });
     console.log(val, 'val');
     if (this.state.editObj.id) {
-      this.editProduct(this.state.editObj);
+      const params = {
+        ...this.state.editObj,
+        productname: val.props.productname,
+        price: Number(val.price),
+        desc: val.desc,
+      };
+      this.editProduct(params);
     } else {
-      this.addProduct({ ...val, price: Number(val.price), menuId: this.state.curMenuId });
+      this.addProduct({
+        ...val,
+        productname: val.props.productname,
+        price: Number(val.price),
+        menuId: this.state.curMenuId,
+      });
     }
   };
 
   // 编辑
   handleClick(record) {
-    console.log(record, '--');
+    // console.log(record, '--');
     this.setState({
       visible: true,
       editObj: record,
     });
-    // this.editProduct(record);
+  }
+
+  // 删除
+  handleDelete(record) {
+    console.log(record);
+    const id = record.id;
+    this.deleteProduct(id);
   }
 
   render() {
@@ -191,9 +225,19 @@ export default class Product extends Component {
         title: '操作',
         render: (text, record) => {
           return (
-            <Button type="primary" onClick={this.handleClick.bind(this, record)}>
-              编辑
-            </Button>
+            <div>
+              <Button
+                type="primary"
+                onClick={this.handleClick.bind(this, record)}
+                style={{ marginRight: '10px' }}
+              >
+                编辑
+              </Button>
+
+              <Button type="danger" onClick={this.handleDelete.bind(this, record)}>
+                删除
+              </Button>
+            </div>
           );
         },
       },
