@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from '@/libs/axios';
 
-import { Button, Radio, Table, message } from 'antd';
+import { Button, Radio, Table, message, Pagination } from 'antd';
 import ModalBox from './modal';
 
 export default class Product extends Component {
@@ -16,6 +16,11 @@ export default class Product extends Component {
     menuList: [],
     productList: [],
     editObj: {},
+    total: 0,
+    page: {
+      pageNum: 1,
+      pageSize: 10,
+    },
   };
 
   // 获取菜单列表
@@ -49,6 +54,7 @@ export default class Product extends Component {
         method: 'get',
         params: {
           menuId: this.state.curMenuId,
+          ...this.state.page,
         },
       });
 
@@ -62,6 +68,7 @@ export default class Product extends Component {
       });
       this.setState({
         productList: res.data.data,
+        total: res.data.attr.total,
       });
     } catch (err) {
       console.log(err);
@@ -127,6 +134,9 @@ export default class Product extends Component {
     this.setState(
       {
         curMenuId: e.target.value,
+        page: {
+          pageNum: 1,
+        },
       },
       () => {
         sessionStorage.setItem('curMenuId', e.target.value);
@@ -204,6 +214,7 @@ export default class Product extends Component {
       visible: true,
       editObj: record,
     });
+    console.log(this.state.editObj, '--');
   }
 
   // 删除
@@ -213,35 +224,62 @@ export default class Product extends Component {
     this.deleteProduct(id);
   }
 
+  // 翻页 page 为放回的当前页
+  handleChange = (page, pageSize) => {
+    console.log(page, pageSize);
+    this.setState(
+      {
+        page: {
+          pageNum: page,
+          pageSize: this.state.page.pageSize,
+        },
+      },
+      () => {
+        console.log(this.state, '--');
+        this.getProductList();
+      },
+    );
+  };
+
   render() {
     const columns = [
       {
         title: '产品名称',
+        align: 'center',
         dataIndex: 'productName',
         key: 'productName',
       },
       {
         title: '价格',
+        align: 'center',
         dataIndex: 'price',
         key: 'price',
       },
       {
         title: '描述',
+        align: 'center',
         dataIndex: 'desc',
         key: 'desc',
       },
       {
         title: '创建时间',
+        align: 'center',
         dataIndex: 'createAt',
-        key: 'createAt',
+        render(text, record) {
+          return <span>{text.substring(0, 10)}</span>;
+        },
       },
       {
         title: '更新时间',
+        align: 'center',
         dataIndex: 'updateAt',
-        key: 'updateAt',
+        render(text, record) {
+          return <span>{text.substring(0, 10)}</span>;
+        },
       },
       {
         title: '操作',
+        align: 'center',
         render: (text, record) => {
           return (
             <div>
@@ -261,7 +299,16 @@ export default class Product extends Component {
         },
       },
     ];
-    const { menuList, productList, curMenuId, visible, confirmLoading, editObj } = this.state;
+    const {
+      menuList,
+      productList,
+      curMenuId,
+      visible,
+      confirmLoading,
+      editObj,
+      total,
+      page,
+    } = this.state;
     return (
       <div>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -288,7 +335,14 @@ export default class Product extends Component {
           editObj={editObj}
         />
         <div style={{ margin: '20px 0' }}>
-          <Table dataSource={productList} columns={columns} />
+          <Table dataSource={productList} columns={columns} bordered pagination={false} />
+          <Pagination
+            defaultCurrent={1}
+            current={page.pageNum}
+            total={total}
+            style={{ marginTop: '20px' }}
+            onChange={this.handleChange}
+          />
         </div>
       </div>
     );
