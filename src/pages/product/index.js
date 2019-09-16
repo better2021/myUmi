@@ -29,10 +29,12 @@ export default class Product extends Component {
         message.warning(res.message, 2);
         return;
       }
-      console.log(res.data.data, 'menu');
+      //  console.log(res.data.data, 'menu');
+      const curMenuId = this.state.curMenuId;
+
       this.setState({
         menuList: res.data.data,
-        curMenuId: res.data.data.length ? res.data.data[0].id : 0,
+        curMenuId: curMenuId || (res.data.data.length ? res.data.data[0].id : 1),
       });
     } catch (err) {
       console.log(err);
@@ -127,6 +129,7 @@ export default class Product extends Component {
         curMenuId: e.target.value,
       },
       () => {
+        sessionStorage.setItem('curMenuId', e.target.value);
         this.getProductList();
       },
     );
@@ -141,10 +144,26 @@ export default class Product extends Component {
     });
   };
 
-  componentDidMount() {
+  callback = () => {
     Promise.all([this.getMenuList()]).then(res => {
       this.getProductList();
     });
+  };
+
+  componentDidMount() {
+    const menuId = sessionStorage.getItem('curMenuId');
+    if (menuId) {
+      this.setState(
+        {
+          curMenuId: Number(menuId),
+        },
+        () => {
+          this.callback();
+        },
+      );
+    } else {
+      this.callback();
+    }
   }
 
   setVisible = () => {
