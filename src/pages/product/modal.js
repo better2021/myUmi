@@ -3,6 +3,9 @@ import { Modal, Form, Input } from 'antd';
 
 const CustomForm = props => {
   const { getFieldDecorator } = props.form;
+
+  console.log('ppppppppppp', props);
+
   return (
     <Form className="login-form">
       <Form.Item label="产品名称">
@@ -48,7 +51,7 @@ class ModalBox extends Component {
 
   render() {
     const { visible, confirmLoading, editObj } = this.props;
-    // console.log(editObj, 'editObj-----');
+    console.log(editObj, 'editObj-----');
 
     return (
       <div>

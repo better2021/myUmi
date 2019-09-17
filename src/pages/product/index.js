@@ -188,7 +188,7 @@ export default class Product extends Component {
       visible: false,
       confirmLoading: false,
     });
-    console.log(val, 'val');
+    // console.log(val, 'val');
     if (this.state.editObj.id) {
       const params = {
         ...this.state.editObj,
@@ -210,11 +210,15 @@ export default class Product extends Component {
   // 编辑
   handleClick(record) {
     // console.log(record, '--');
-    this.setState({
-      visible: true,
-      editObj: record,
-    });
-    console.log(this.state.editObj, '--');
+    this.setState(
+      {
+        visible: true,
+        editObj: record,
+      },
+      () => {
+        console.log(this.state.editObj, '--');
+      },
+    );
   }
 
   // 删除
