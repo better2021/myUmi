@@ -99,6 +99,12 @@ class Sider extends Component {
           <Menu.Item key="11">
             <Link to="/speak">speak</Link>
           </Menu.Item>
+          <Menu.Item key="12">
+            <Link to="/hooks01">hooks01</Link>
+          </Menu.Item>
+          <Menu.Item key="13">
+            <Link to="/hooks02">hooks02</Link>
+          </Menu.Item>
         </SubMenu>
       </Menu>
     );

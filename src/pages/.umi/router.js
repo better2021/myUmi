@@ -16,11 +16,11 @@ let routes = [
 }),
     "routes": [
       {
-        "path": "/blog/CodeBlock",
+        "path": "/product/modal",
         "exact": true,
         "component": _dvaDynamic({
   
-  component: () => import(/* webpackChunkName: "p__blog__CodeBlock" */'../blog/CodeBlock.js'),
+  component: () => import(/* webpackChunkName: "p__product__modal" */'../product/modal.js'),
   
 }),
         "_title": "myumi",
@@ -38,17 +38,6 @@ let routes = [
         "_title_default": "myumi"
       },
       {
-        "path": "/getDate",
-        "exact": true,
-        "component": _dvaDynamic({
-  
-  component: () => import(/* webpackChunkName: "p__getDate__index" */'../getDate/index.js'),
-  
-}),
-        "_title": "myumi",
-        "_title_default": "myumi"
-      },
-      {
         "path": "/hook",
         "exact": true,
         "component": _dvaDynamic({
@@ -60,22 +49,22 @@ let routes = [
         "_title_default": "myumi"
       },
       {
-        "path": "/",
+        "path": "/hooks01",
         "exact": true,
         "component": _dvaDynamic({
   
-  component: () => import(/* webpackChunkName: "p__index" */'../index.js'),
+  component: () => import(/* webpackChunkName: "p__hooks01__index" */'../hooks01/index.js'),
   
 }),
         "_title": "myumi",
         "_title_default": "myumi"
       },
       {
-        "path": "/blog",
+        "path": "/hooks02",
         "exact": true,
         "component": _dvaDynamic({
   
-  component: () => import(/* webpackChunkName: "p__blog__index" */'../blog/index.js'),
+  component: () => import(/* webpackChunkName: "p__hooks02__index" */'../hooks02/index.js'),
   
 }),
         "_title": "myumi",
@@ -104,11 +93,11 @@ let routes = [
         "_title_default": "myumi"
       },
       {
-        "path": "/product/modal",
+        "path": "/getDate",
         "exact": true,
         "component": _dvaDynamic({
   
-  component: () => import(/* webpackChunkName: "p__product__modal" */'../product/modal.js'),
+  component: () => import(/* webpackChunkName: "p__getDate__index" */'../getDate/index.js'),
   
 }),
         "_title": "myumi",
@@ -148,6 +137,28 @@ let routes = [
         "_title_default": "myumi"
       },
       {
+        "path": "/blog",
+        "exact": true,
+        "component": _dvaDynamic({
+  
+  component: () => import(/* webpackChunkName: "p__blog__index" */'../blog/index.js'),
+  
+}),
+        "_title": "myumi",
+        "_title_default": "myumi"
+      },
+      {
+        "path": "/blog/CodeBlock",
+        "exact": true,
+        "component": _dvaDynamic({
+  
+  component: () => import(/* webpackChunkName: "p__blog__CodeBlock" */'../blog/CodeBlock.js'),
+  
+}),
+        "_title": "myumi",
+        "_title_default": "myumi"
+      },
+      {
         "path": "/user",
         "exact": true,
         "component": _dvaDynamic({
@@ -159,7 +170,18 @@ let routes = [
         "_title_default": "myumi"
       },
       {
-        "component": () => React.createElement(require('E:/study/myumi/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false }),
+        "path": "/",
+        "exact": true,
+        "component": _dvaDynamic({
+  
+  component: () => import(/* webpackChunkName: "p__index" */'../index.js'),
+  
+}),
+        "_title": "myumi",
+        "_title_default": "myumi"
+      },
+      {
+        "component": () => React.createElement(require('D:/study/myumi/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false }),
         "_title": "myumi",
         "_title_default": "myumi"
       }
@@ -168,7 +190,7 @@ let routes = [
     "_title_default": "myumi"
   },
   {
-    "component": () => React.createElement(require('E:/study/myumi/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false }),
+    "component": () => React.createElement(require('D:/study/myumi/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false }),
     "_title": "myumi",
     "_title_default": "myumi"
   }
