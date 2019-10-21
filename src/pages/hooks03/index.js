@@ -35,8 +35,14 @@ const Hook = () => {
 */
 
 /**
- *
+ * [count, dispatch] = useReducer((state, action) => {}
+ * state 为状态初始值对应 count
+ * action 为动作，用dispatch(动作的名称) 来触发
+ * dispatch('add') 就会触发 state + 1 即 count + 1 , 案例中count初始值为0
+ * dispatch('sub') 就会触发 state - 1 即 count - 1
  */
+
+/*
 function ReduceDemo() {
   const [count, dispatch] = useReducer((state, action) => {
     switch (action) {
@@ -71,5 +77,25 @@ function ReduceDemo() {
     </>
   );
 }
+*/
 
-export default ReduceDemo;
+/**
+ *
+ */
+
+import ShowArea from './showArea';
+import Buttons from './buttons';
+import { Color } from './color';
+
+function Hook() {
+  return (
+    <div>
+      <Color>
+        <ShowArea />
+        <Buttons />
+      </Color>
+    </div>
+  );
+}
+
+export default Hook;

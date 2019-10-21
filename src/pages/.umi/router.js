@@ -16,11 +16,11 @@ let routes = [
 }),
     "routes": [
       {
-        "path": "/speak",
+        "path": "/test",
         "exact": true,
         "component": _dvaDynamic({
   
-  component: () => import(/* webpackChunkName: "p__speak__index" */'../speak/index.js'),
+  component: () => import(/* webpackChunkName: "p__test__index" */'../test/index.js'),
   
 }),
         "_title": "myumi",
@@ -104,22 +104,22 @@ let routes = [
         "_title_default": "myumi"
       },
       {
-        "path": "/hook",
+        "path": "/speak",
         "exact": true,
         "component": _dvaDynamic({
   
-  component: () => import(/* webpackChunkName: "p__hook__index" */'../hook/index.js'),
+  component: () => import(/* webpackChunkName: "p__speak__index" */'../speak/index.js'),
   
 }),
         "_title": "myumi",
         "_title_default": "myumi"
       },
       {
-        "path": "/test",
+        "path": "/hook",
         "exact": true,
         "component": _dvaDynamic({
   
-  component: () => import(/* webpackChunkName: "p__test__index" */'../test/index.js'),
+  component: () => import(/* webpackChunkName: "p__hook__index" */'../hook/index.js'),
   
 }),
         "_title": "myumi",
@@ -186,6 +186,39 @@ let routes = [
         "component": _dvaDynamic({
   
   component: () => import(/* webpackChunkName: "p__hooks03__index" */'../hooks03/index.js'),
+  
+}),
+        "_title": "myumi",
+        "_title_default": "myumi"
+      },
+      {
+        "path": "/hooks03/buttons",
+        "exact": true,
+        "component": _dvaDynamic({
+  
+  component: () => import(/* webpackChunkName: "p__hooks03__buttons" */'../hooks03/buttons.js'),
+  
+}),
+        "_title": "myumi",
+        "_title_default": "myumi"
+      },
+      {
+        "path": "/hooks03/color",
+        "exact": true,
+        "component": _dvaDynamic({
+  
+  component: () => import(/* webpackChunkName: "p__hooks03__color" */'../hooks03/color.js'),
+  
+}),
+        "_title": "myumi",
+        "_title_default": "myumi"
+      },
+      {
+        "path": "/hooks03/showArea",
+        "exact": true,
+        "component": _dvaDynamic({
+  
+  component: () => import(/* webpackChunkName: "p__hooks03__showArea" */'../hooks03/showArea.js'),
   
 }),
         "_title": "myumi",
