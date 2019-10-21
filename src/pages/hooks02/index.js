@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef, useMemo, memo } from 'react';
-import { Button } from 'antd';
+import React, { useState, useEffect, useRef, useMemo, memo, useCallback } from 'react';
+import { Button, Input } from 'antd';
 
 //const Hook = () => {
 //const [count, setCount] = useState(0);
@@ -54,13 +54,16 @@ import { Button } from 'antd';
 // };
 
 const Child = memo(
-  () => {
+  props => {
     // memo包含的组件传参没有改变时，组件不重新会渲染
     const date = new Date();
     const [hour, min, second] = [date.getHours(), date.getMinutes(), date.getSeconds()];
     return (
       <div>
         当前时间：{hour}:{min}:{second}
+        <div>
+          <Input placeholder="default size" style={{ width: '300px' }} onChange={props.onChange} />
+        </div>
       </div>
     );
   },
@@ -73,17 +76,23 @@ const Child = memo(
 
 const Parent = () => {
   const [count, setCount] = useState(0);
+  const [text, setText] = useState('');
   const [timeCount, setTimeCount] = useState(0);
+
+  const handleChange = useCallback(e => {
+    setText(e.target.value);
+  }, []);
 
   // Child子组件上的传参timeCount变化时，memo包含的组件就可以重新渲染了
   return (
     <>
       <div>count:{count}</div>
+      <div>text:{text}</div>
       <Button type="primary" onClick={() => setCount(count + 1)}>
         增加
       </Button>
       <Button onClick={() => setTimeCount(timeCount + 1)}>获取当前时间</Button>
-      <Child count={timeCount} />
+      <Child count={timeCount} onChange={handleChange} />
     </>
   );
 };
@@ -92,8 +101,36 @@ function App() {
   return (
     <>
       <Parent />
+      <Hook />
     </>
   );
 }
+
+/*-------*/
+const Hook = () => {
+  const [width, setWidth] = useState('0px');
+  const [height, setHeight] = useState('0px');
+
+  useEffect(() => {
+    // 设置初始值
+    setWidth(document.documentElement.clientWidth);
+    setHeight(document.documentElement.clientHeight);
+
+    const handleResize = () => {
+      setWidth(document.documentElement.clientWidth);
+      setHeight(document.documentElement.clientHeight);
+    };
+    window.addEventListener('resize', handleResize, false); // 监听窗口变化
+    return () => {
+      window.removeEventListener('resize', handleResize, false); // 移除监听
+    };
+  }, []);
+
+  return (
+    <div>
+      size:{width}*{height}
+    </div>
+  );
+};
 
 export default App;

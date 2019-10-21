@@ -16,11 +16,11 @@ let routes = [
 }),
     "routes": [
       {
-        "path": "/product/modal",
+        "path": "/speak",
         "exact": true,
         "component": _dvaDynamic({
   
-  component: () => import(/* webpackChunkName: "p__product__modal" */'../product/modal.js'),
+  component: () => import(/* webpackChunkName: "p__speak__index" */'../speak/index.js'),
   
 }),
         "_title": "myumi",
@@ -32,17 +32,6 @@ let routes = [
         "component": _dvaDynamic({
   
   component: () => import(/* webpackChunkName: "p__about__index" */'../about/index.js'),
-  
-}),
-        "_title": "myumi",
-        "_title_default": "myumi"
-      },
-      {
-        "path": "/hook",
-        "exact": true,
-        "component": _dvaDynamic({
-  
-  component: () => import(/* webpackChunkName: "p__hook__index" */'../hook/index.js'),
   
 }),
         "_title": "myumi",
@@ -71,11 +60,22 @@ let routes = [
         "_title_default": "myumi"
       },
       {
-        "path": "/count",
+        "path": "/getDate",
         "exact": true,
         "component": _dvaDynamic({
   
-  component: () => import(/* webpackChunkName: "p__count__index" */'../count/index.js'),
+  component: () => import(/* webpackChunkName: "p__getDate__index" */'../getDate/index.js'),
+  
+}),
+        "_title": "myumi",
+        "_title_default": "myumi"
+      },
+      {
+        "path": "/",
+        "exact": true,
+        "component": _dvaDynamic({
+  
+  component: () => import(/* webpackChunkName: "p__index" */'../index.js'),
   
 }),
         "_title": "myumi",
@@ -93,22 +93,22 @@ let routes = [
         "_title_default": "myumi"
       },
       {
-        "path": "/getDate",
+        "path": "/product/modal",
         "exact": true,
         "component": _dvaDynamic({
   
-  component: () => import(/* webpackChunkName: "p__getDate__index" */'../getDate/index.js'),
+  component: () => import(/* webpackChunkName: "p__product__modal" */'../product/modal.js'),
   
 }),
         "_title": "myumi",
         "_title_default": "myumi"
       },
       {
-        "path": "/speak",
+        "path": "/hook",
         "exact": true,
         "component": _dvaDynamic({
   
-  component: () => import(/* webpackChunkName: "p__speak__index" */'../speak/index.js'),
+  component: () => import(/* webpackChunkName: "p__hook__index" */'../hook/index.js'),
   
 }),
         "_title": "myumi",
@@ -120,6 +120,17 @@ let routes = [
         "component": _dvaDynamic({
   
   component: () => import(/* webpackChunkName: "p__test__index" */'../test/index.js'),
+  
+}),
+        "_title": "myumi",
+        "_title_default": "myumi"
+      },
+      {
+        "path": "/count",
+        "exact": true,
+        "component": _dvaDynamic({
+  
+  component: () => import(/* webpackChunkName: "p__count__index" */'../count/index.js'),
   
 }),
         "_title": "myumi",
@@ -170,11 +181,11 @@ let routes = [
         "_title_default": "myumi"
       },
       {
-        "path": "/",
+        "path": "/hooks03",
         "exact": true,
         "component": _dvaDynamic({
   
-  component: () => import(/* webpackChunkName: "p__index" */'../index.js'),
+  component: () => import(/* webpackChunkName: "p__hooks03__index" */'../hooks03/index.js'),
   
 }),
         "_title": "myumi",
